@@ -1,0 +1,59 @@
+﻿@using Entity
+@{
+    ViewBag.Title = "TümPaketler";
+    Layout = "~/Areas/Ziyaretci/Views/Shared/_Layout.cshtml";
+    List<Product> products = Query.ProductList();
+}
+<!-- Start Page Title Area -->
+<div class="page-title-area defaultbg" style="background-image:url(/assets/img/page.png);">
+    <div class="breadcrumb-overly">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="container">
+                    <div class="page-title-content">
+                        <h2>Paketler</h2>
+                        <ul>
+                            <li><a href="/Ziyaretci/Home/Anasayfa">Anasayfa</a></li>
+                            <li> Paketler </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+<!-- Start Pricing Area -->
+<section class="pricing-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span>PAKET SEÇİNİZ</span>
+            <h3>PAKET BİLGİLERİ</h3>
+        </div>
+        <div class="row">
+            @foreach (var item in products)
+            {
+                <div class="col-lg-3 col-sm-6 mb-30">
+                    <div class="pricing-single">
+                        <h4>@item.Category.Name</h4>
+                        <h6 style="color:#ff887d">@item.Name</h6>
+                        <h2><sub>₺</sub>@item.Price <span>/@item.Time</span></h2>
+                        <ul>
+                            <li><i class="fas fa-check"></i>@item.Item1</li>
+                            <li><i class="fas fa-check"></i> @item.Item2</li>
+                            <li><i class="fas fa-check"></i> @item.Item3</li>
+                            <li><i class="fas fa-check"></i> @item.Item4</li>
+                            <li><i class="fas fa-check"></i> @item.Item5</li>
+                        </ul>
+                        <br />
+                        <i class="fas fa-user"></i><b style="color:darkslateblue;"> @item.User.FirstName @item.User.LastName.ToUpper()</b>
+                        <div class="pricing-btn mt-30">
+                            <a class="pricing" href="https://wa.me/@item.User.PhoneNumber" target="_blank">Whatsapp İletişim</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- End Pricing Area -->

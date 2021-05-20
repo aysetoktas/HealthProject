@@ -1,6 +1,8 @@
-﻿@{
+﻿@using Entity
+@{
     ViewBag.Title = "Anasayfa";
     Layout = "~/Areas/Ziyaretci/Views/Shared/_Layout.cshtml";
+    List<Category> categories = Query.CategoryList();
 }
 <!-- Start Main Banner Area -->
 <div class="main-banner">
@@ -44,10 +46,10 @@
             <div class="col-lg-6">
                 <div class="about-info">
                     <h5>Hakkımızda</h5>
-                    <h2>We Provide Quality Computor & Mobile Repair Services</h2>
+                    <h2>Hakkımızda Sayfası Doldurulacaktır.</h2>
                     <p>Curabitur lobortis id lorem id bibendum. Ut id consectetur magna. Quisque volutpat augue enim, pulvinar lobortis nibh lacinia at. Vestibulum nec erat ut mi sollicitudin porttitor id sit amet risus. Nam tempus vel odio vitae aliquam. In imperdiet eros id lacus vestibulum vestibulum. Suspendisse fermentum sem sagittis ante venenatis.</p>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</p>
-                    <a class="default-btn-one" href="about.html">Daha fazla bilgi...</a>
+                    <a class="default-btn-one" href="/Ziyaretci/Home/Hakkimizda">Daha fazla bilgi...</a>
                 </div>
             </div>
         </div>
@@ -62,66 +64,19 @@
             <h3>Hangi Alanda Destek Almak İstersiniz?</h3>
         </div>
         <div class="row">
+            @foreach (var item in categories)
+            {
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="single-services-box">
                     <div class="icon">
-                        <img class="service-icon" src="~/assets/img/services/icon_1578287956.svg" alt="icon" />
+                        <img class="service-icon" src="~/assets/img/services/icon_1578288901.svg" alt="icon" />
                         <img class="hover-img" src="~/assets/img/services/hover_icon_1578287956.svg" alt="icon" />
                     </div>
-                    <h3><a href="service-single.html">Psikoloji</a></h3>
-                    <p>mobile app developers have been creating iOS and Android apps for so many years that it’s not just their passion </p>
+                    <h3><a href="service-single.html">@item.Name</a></h3>
+                    <p>@item.Description </p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-services-box">
-                    <div class="icon" style="background:#cafbf1">
-                        <img class="service-icon" src="~/assets/img/services/icon_1578288552.svg" alt="icon" />
-                        <img class="hover-img" src="~/assets/img/services/hover_icon_1578288552.svg" alt="icon" />
-                    </div>
-                    <h3><a href="service-single.html">Beslenme</a></h3>
-                    <p>We’ve built mobile backend systems as well as web applications across numerous industry verticals. Whether it’s PHP.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-services-box">
-                    <div class="icon" style="background:#C5EBF9">
-                        <img class="service-icon" src="~/assets/img/services/icon_1578288703.svg" alt="icon" />
-                        <img class="hover-img" src="~/assets/img/services/hover_icon_1578288703.svg" alt="icon" />
-                    </div>
-                    <h3><a href="service-single.html">Uyku</a></h3>
-                    <p>Design is always a fundamental contributor to the experience of digital products. Even when you don’t have one.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-services-box">
-                    <div class="icon" style="background:#DDD5FB">
-                        <img class="service-icon" src="~/assets/img/services/icon_1578288792.svg" alt="icon" />
-                        <img class="hover-img" src="~/assets/img/services/hover_icon_1578288792.svg" alt="icon" />
-                    </div>
-                    <h3><a href="service-single.html">Spor</a></h3>
-                    <p>The gaming industry is at rise like never before and it’s not surprising why app ecosystems have dedicated their focus</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-services-box">
-                    <div class="icon" style="background:#F8FBD5">
-                        <img class="service-icon" src="~/assets/img/services/icon_1578288901.svg" alt="icon" />
-                        <img class="hover-img" src="~/assets/img/services/hover_icon_1578288901.svg" alt="icon" />
-                    </div>
-                    <h3><a href="service-single.html">Hayat Koçu</a></h3>
-                    <p>software testing is a crucial  of each software development project. As a software outsourcing company with more than 5 years</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="single-services-box">
-                    <div class="icon" style="background:#FCDEEE">
-                        <img class="service-icon" src="~/assets/img/services/icon_1578288963.svg" alt="icon" />
-                        <img class="hover-img" src="~/assets/img/services/hover_icon_1578288963.svg" alt="icon" />
-                    </div>
-                    <h3><a href="service-single.html">Managed Maintenance Services</a></h3>
-                    <p>As mature problems-solvers, we have over a five year&#039;s of experience in tackling challenging business-critical projects</p>
-                </div>
-            </div>
+            }
         </div>
     </div>
     <div class="default-animation">

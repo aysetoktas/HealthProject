@@ -13,6 +13,7 @@ namespace Entity
         public DateTime Tarih { get; set; }
         public string Etiket { get; set; }
 
-        //Kategori ile bağlantısı olacak
+        public int CategoryID { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

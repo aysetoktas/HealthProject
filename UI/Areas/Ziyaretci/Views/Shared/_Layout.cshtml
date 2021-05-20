@@ -1,5 +1,9 @@
-﻿@{
+﻿@using Entity
+@{
     Layout = null;
+    List<Category> categories = Query.CategoryList();
+    List<Product> products = Query.ProductList();
+    List<User> users = Query.UserList();
 }
 <!doctype html>
 <html lang="en">
@@ -60,75 +64,41 @@
                                 <a href="/Ziyaretci/Home/Anasayfa" class="nav-link active">Anasayfa</a>
                             </li>
 
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a href="/Ziyaretci/Home/Makaleler">Makaleler <i class="fas fa-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="blog.html">Psikoloji</a></li>
-                                    <li><a href="blog-grid.html">Beslenme</a></li>
-                                    <li><a href="blog-fullwidth.html">Uyku</a></li>
-                                    <li><a href="single.html">Spor</a></li>
-                                    <li><a href="single.html">Hayat Koçu</a></li>
+                                    @foreach (var item in categories)
+                                    {
+                                        <li><a href="/Ziyaretci/Home/Makaleler?id=@item.ID">@item.Name</a></li>
+                                    }
                                     <li><a href="/Ziyaretci/Home/Makaleler">Tüm Makaleler</a></li>
                                 </ul>
-                            </li>
+                            </li>*@
                             <li class="nav-item">
                                 <a href="/Ziyaretci/Home/Paketler" class="nav-link">Paketler <i class="fas fa-chevron-down"></i></a>
                                 <ul class="mega-menu dropdown-menu">
-                                    <li>
-                                        <a href="#">
-                                            <span class="mega-icon"><i class="fas fa-laptop-code"></i></span>
-                                            <div class="mega-content">
-                                                <h3 class="title">Psikoloji Paketleri</h3>
-                                                <p>Tüm Paketler</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="mega-icon"><i class="fas fa-cart-plus"></i></span>
-                                            <div class="mega-content">
-                                                <h3 class="title">Beslenme Paketleri</h3>
-                                                <p>Tüm Paketler</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="mega-icon"><i class="fas fa-pencil-ruler"></i></span>
-                                            <div class="mega-content">
-                                                <h3 class="title">Uyku Paketleri</h3>
-                                                <p>Tüm Paketler</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="mega-icon"><i class="fas fa-gamepad"></i></span>
-                                            <div class="mega-content">
-                                                <h3 class="title">Spor Paketleri</h3>
-                                                <p>Tüm Paketler</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="mega-icon"><i class="fas fa-layer-group"></i></span>
-                                            <div class="mega-content">
-                                                <h3 class="title">Hayat Koçu Paketleri</h3>
-                                                <p>Tüm Paketler</p>
-                                            </div>
-                                        </a>
-                                    </li>
+                                    @foreach (var item in categories)
+                                    {
+                                        <li>
+                                            <a href="/Ziyaretci/Home/Paketler?id=@item.ID">
+                                                <span class="mega-icon"><i class="fas fa-cart-plus"></i></span>
+                                                <div class="mega-content">
+                                                    <h3 class="title">@item.Name</h3>
+                                                    <p>Tüm Paketler</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
                                 </ul>
                             </li>
                             <li class="nav-item">
                                 <a href="/Ziyaretci/Home/UzmanKisiler" class="nav-link">Uzmanlar <i class="fas fa-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="project.html">Psikoloji</a></li>
-                                    <li><a href="project-details.html">Beslenme</a></li>
-                                    <li><a href="project-details.html">Uyku</a></li>
-                                    <li><a href="project-details.html">Spor</a></li>
-                                    <li><a href="project-details.html">Hayat Koçu</a></li>
+                                    @foreach (var item in categories)
+                                    {
+                                        <li><a href="/Ziyaretci/Home/UzmanKisiler?id=@item.ID">@item.Name</a></li>
+                                    }
+                                    <li><a href="/Ziyaretci/Home/UzmanKisiler">Tüm Uzmanlar</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -140,7 +110,10 @@
                         </ul>
                         <div class="others-options">
                             <div class="option-item">
-                                <a class="default-btn-one" href="quote.html">Çıkış Yap</a>
+                                <a class="default-btn-one" href="quote.html">Üye Ol</a>
+                            </div>
+                            <div class="option-item">
+                                <a class="default-btn-one" href="quote.html">Giriş Yap</a>
                             </div>
                         </div>
                     </div>
@@ -204,16 +177,13 @@
                                 <a href="/Ziyaretci/Home/Hakkimizda">Hakkımızda</a>
                             </li>
                             <li>
-                                <a href="project.html">Project</a>
+                                <a href="/Ziyaretci/Home/Paketler">Paketler</a>
                             </li>
                             <li>
-                                <a href="service.html">Hizmetlerimiz</a>
+                                <a href="/Ziyaretci/Home/UzmanKisiler">Uzmanlar</a>
                             </li>
                             <li>
-                                <a href="contact.html">İletişim</a>
-                            </li>
-                            <li>
-                                <a href="quote.html">Get Quote</a>
+                                <a href="/Ziyaretci/Home/Iletisim">İletişim</a>
                             </li>
                         </ul>
                     </div>
