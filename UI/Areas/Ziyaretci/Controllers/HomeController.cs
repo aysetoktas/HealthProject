@@ -32,9 +32,10 @@ namespace UI.Areas.Ziyaretci.Controllers
         {
             return View();
         }
-        public ActionResult Makale()
+        public ActionResult Makale(int? id)
         {
-            return View();
+            Article article = db.Articles.Find(id);
+            return View(article);
         }
 
         public ActionResult Paketler(int? id)

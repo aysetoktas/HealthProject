@@ -1,0 +1,62 @@
+﻿@using Entity
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    List<Article> articles = Query.ArticleList();
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title ">MAKALELER</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="display" style="width:100%" id="categoryTable">
+                                <thead class=" text-primary">
+                                    <tr>
+                                        <th>Başlık</th>
+                                        <th>İçerik</th>
+                                        <th>Yazar</th>
+                                        <th>Tarih</th>
+                                        <th>Etiket</th>
+                                        <th>Kaynakça</th>
+                                        <th>Kategori</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in articles)
+                                    {
+                                        
+                                            <tr>
+                                                <td>@item.Title</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.Yazar</td>
+                                                <td>@item.Tarih</td>
+                                                <td>@item.Etiket</td>
+                                                <td>@item.Kaynakca</td>
+                                                <td>@item.Category.Name</td>
+                                                <td>
+                                                    <a href="/Admin/Article/Güncelle/@item.ID">
+                                                        <button type="button" class="btn btn-info">GÜNCELLE</button>
+                                                    </a>
+                                                    <a href="/Admin/Article/Sil/@item.ID">
+                                                        <button type="button" class="btn btn-danger">SİL</button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

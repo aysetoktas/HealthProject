@@ -3,6 +3,8 @@
     ViewBag.Title = "Listele";
     Layout = "~/Areas/Uzman/Views/Shared/_UzmanLayout.cshtml";
     List<Product> products = Query.ProductList();
+    List<User> users = Query.UserList();
+    User currentUser = Session["cuurentUser"] as User;
 }
 <div class="content">
     <div class="container-fluid">
@@ -10,7 +12,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h3 class="card-title ">KATEGORİLER</h3>
+                        <h3 class="card-title ">PAKETLER</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -18,33 +20,44 @@
                                 <thead class=" text-primary">
                                     <tr>
                                         <th>Ad</th>
-                                        <th>Açıklama</th>
+                                        <th>Fiyat</th>
+                                        <th>Süre</th>
+                                        <th>Özellik1</th>
+                                        <th>Özellik2</th>
+                                        <th>Özellik3</th>
+                                        <th>Özellik4</th>
+                                        <th>Özellik5</th>
+                                        <th>Kategori</th>
+                                        <th>Uzman</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in products)
                                     {
-                                    <tr>
-                                        <td>@item.Name</td>
-                                        <td>@item.Price</td>
-                                        <td>@item.Time</td>
-                                        <td>@item.Item1</td>
-                                        <td>@item.Item2</td>
-                                        <td>@item.Item3</td>
-                                        <td>@item.Item4</td>
-                                        <td>@item.Item5</td>
-                                        <td>@item.CategoryID</td>
-                                        <td>@item.UserID</td>
-                                        <td>
-                                            <a href="/Uzman/Product/Güncelle/@item.ID">
-                                                <i style="margin-left: 12px;" class="material-icons">Güncelle</i>
-                                            </a>
-                                            <a href="/Uzman/Product/Sil/@item.ID">
-                                                <i class="material-icons">/ Sil</i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                        //if (item.UserID == currentUser.ID)
+                                        //{
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@item.Price</td>
+                                                <td>@item.Time</td>
+                                                <td>@item.Item1</td>
+                                                <td>@item.Item2</td>
+                                                <td>@item.Item3</td>
+                                                <td>@item.Item4</td>
+                                                <td>@item.Item5</td>
+                                                <td>@item.Category.Name</td>
+                                                <td>@item.User.FirstName @item.User.LastName</td>
+                                                <td>
+                                                    <a href="/Uzman/Product/Güncelle/@item.ID">
+                                                        <button type="button" class="btn btn-info">GÜNCELLE</button>
+                                                    </a>
+                                                    <a href="/Uzman/Product/Sil/@item.ID">
+                                                        <button type="button" class="btn btn-danger">SİL</button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @*}*@
                                     }
                                 </tbody>
                             </table>

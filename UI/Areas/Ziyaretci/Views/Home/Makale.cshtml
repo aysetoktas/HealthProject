@@ -1,244 +1,121 @@
-﻿@{
+﻿@using Entity
+@model Article
+@{
     ViewBag.Title = "Makale";
     Layout = "~/Areas/Ziyaretci/Views/Shared/_Layout.cshtml";
+    List<Article> articles = Query.ArticleList();
+    List<Category> categories = Query.CategoryList();
+    int count = 0;
+    int makaleCount = 0;
 }
-    <!-- Start Page Title Area -->
-    <div class="page-title-area defaultbg" style="background-image:url(/assets/img/page.png);">
-        <div class="breadcrumb-overly">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="container">
-                        <div class="page-title-content">
-                            <h2>
-                                Blog Details
-                            </h2>
-                            <ul>
-                                <li><a href="/Ziyaretci/Home/Anasayfa">Anasayfa</a></li>
-                                <li> Blog Details </li>
-                            </ul>
+<!-- Start Page Title Area -->
+<div class="page-title-area defaultbg" style="background-image:url(/assets/img/page.png);">
+    <div class="breadcrumb-overly">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="container">
+                    <div class="page-title-content">
+                        <h2>
+                            Blog Details
+                        </h2>
+                        <ul>
+                            <li><a href="/Ziyaretci/Home/Anasayfa">Anasayfa</a></li>
+                            <li> Blog Details </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+<!-- Start Blog Area -->
+<section class="blog-area pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <!-- Blog Details Area -->
+            <div class="col-lg-8">
+                <div class="blog-details-full">
+                    <!-- Single Blog Meta -->
+
+                    <div class="single-blog-meta mt-30 mb-20">
+                        <ul>
+                            <li><i class="fas fa-calendar-alt"></i>@Model.Tarih</li>
+                            <li><i class="far fa-user"></i> @Model.Yazar</li>
+                            <li><i class="fas fa-book"></i> @Model.Category.Name</li>
+                        </ul>
+                    </div>
+                    <h2 class="title">@Model.Title</h2>
+                    <div class="content">
+                        <p>
+                            @Model.Description
+                        </p>
+                    </div>
+                    <div class="row mt-30">
+                        <div class="col-md-6">
+                            <div class="blog-single-tags">
+                                <span>Kaynakça : </span>
+                                <a href="" target="_blank">@Model.Kaynakca</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar Area -->
+            <div class="col-lg-4">
+                <div class="blog-sidebar">
+                    <!-- Blog Sidebar Single -->
+                    <div class="blog-sidebar-single mb-35">
+                        <h3>Makaleler</h3>
+                        <div class="widgets-all-posts">
+                            <!-- single -->
+                            @foreach (var item in articles)
+                            {
+                                if (makaleCount < 4)
+                                {
+                                    <div class="widgets-single-post">
+                                        <div class="widgets-single-post-thumb">
+                                            <h6><a href="/Ziyaretci/Home/Makaleler?id=@item.ID">@item.Category.Name</a></h6>
+
+                                        </div>
+                                        <div class="widgets-single-post-content">
+                                            <h2><a href="/Ziyaretci/Home/Makale?id=@item.ID">@item.Title</a></h2>
+                                            <h2>@item.Yazar</h2>
+                                            <span><i class="far fa-calendar-alt"></i> &nbsp; @item.Tarih.Year</span>
+                                        </div>
+                                    </div>
+
+                                }
+                                makaleCount++;
+                            }
+                        </div>
+                    </div>
+                    <!-- Blog Sidebar Single -->
+                    <div class="blog-sidebar-single mb-35">
+                        <h3>Kategoriler</h3>
+                        <ul>
+                            @foreach (var item in categories)
+                            {
+                                <li><a href="/Ziyaretci/Home/Makaleler?id=@item.ID">@item.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <!-- Blog Sidebar Single -->
+                    <div class="blog-sidebar-single mb-35">
+                        <h3>Etiketler</h3>
+                        <div class="blog-sidebar-tags">
+                            @foreach (var item in articles)
+                            {
+                                if (count < 4)
+                                {
+                                    <a href="/Ziyaretci/Home/Makaleler">@item.Etiket</a>
+                                }
+                                count++;
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Page Title Area -->
-    <!-- Start Blog Area -->
-    <section class="blog-area pt-100 pb-100">
-        <div class="container">
-            <div class="row">
-                <!-- Blog Details Area -->
-                <div class="col-lg-8">
-                    <div class="blog-details-full">
-                        <!-- Single Blog Meta -->
-                        <div class="single-blog-meta mt-30 mb-20">
-                            <ul>
-                                <li><i class="fas fa-calendar-alt"></i> February 22, 2021</li>
-                                <li><i class="far fa-user"></i> Admin</li>
-                                <li><i class="fas fa-book"></i> Application Testing</li>
-                                <li><i class="far fa-comments"></i> 0 Comments</li>
-                            </ul>
-                        </div>
-
-                        <h2 class="title">Digital technology on the cutting edge</h2>
-
-                        <div class="content">
-                            <p>We denounce with righteous indige nation and dislike men who are so beguiled and demo realized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue cannot foresee. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled data structures manages data in technology.</p>
-                            <p class="border-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</p>
-                            <ul>
-                                <li><i class="far fa-dot-circle"></i> How will digital activities impact traditional manufacturing.</li>
-                                <li><i class="far fa-dot-circle"></i> All these digital elements and projects aim to enhance .</li>
-                                <li><i class="far fa-dot-circle"></i> I monitor my staff with software that takes screenshots.</li>
-                                <li><i class="far fa-dot-circle"></i> Laoreet dolore magna niacin sodium glutimate aliquam hendrerit.</li>
-                                <li><i class="far fa-dot-circle"></i> Minim veniam quis niacin sodium glutimate nostrud exerci dolor.</li>
-                            </ul>
-                            <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-                            <h4>Emergency It Services</h4>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</p>
-                        </div>
-                        <div class="row mt-30">
-                            <div class="col-md-6">
-                                <div class="blog-single-tags">
-                                    <span>Tags : </span>
-                                    <a href="#">Technology</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Design</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="blog-single-share">
-                                    <span>Share : </span>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-area-full mt-30">
-                            <h3>2 Comments</h3>
-                            <div class="comment-list">
-                                <ul>
-                                    <li class="comment-single">
-                                        <div class="comment-thumb">
-                                            <img src="~/assets/img/comment/img-01.jpg" alt="Comment">
-                                        </div>
-                                        <div class="comment-body">
-                                            <!-- .comment-auther -->
-                                            <a class="comment-author" rel="external nofollow" href="#">john smith</a>
-                                            <!-- .comment-auther -->
-                                            <div class="comment-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                                            </div>
-                                            <!-- .comment-meta -->
-                                            <header class="comment-meta">
-                                                <ul class="post-meta">
-                                                    <li><i class="far fa-clock"></i> 25 Feb, 2021</li>
-                                                    <li><a href="#"><i class="fa fa-reply"></i> reply</a></li>
-                                                </ul>
-                                            </header>
-                                            <!-- .comment-meta -->
-                                        </div>
-                                        <ul class="comment-reply">
-                                            <li class="comment-single">
-                                                <div class="comment-thumb">
-                                                    <img src="~/assets/img/comment/img-02.jpg" alt="Comment">
-                                                </div>
-                                                <div class="comment-body">
-                                                    <!-- .comment-auther -->
-                                                    <a class="comment-author" rel="external nofollow" href="#">john smith</a>
-                                                    <!-- .comment-auther -->
-                                                    <div class="comment-content">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                                                    </div>
-                                                    <!-- .comment-meta -->
-                                                    <header class="comment-meta">
-                                                        <ul class="post-meta">
-                                                            <li><i class="far fa-clock"></i> 25 Feb, 2021</li>
-                                                            <li><a href="#"><i class="fa fa-reply"></i> reply</a></li>
-                                                        </ul>
-                                                    </header>
-                                                    <!-- .comment-meta -->
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="comment-single">
-                                        <div class="comment-thumb">
-                                            <img src="~/assets/img/comment/img-03.jpg" alt="Comment">
-                                        </div>
-                                        <div class="comment-body">
-                                            <!-- .comment-auther -->
-                                            <a class="comment-author" rel="external nofollow" href="#">john smith</a>
-                                            <!-- .comment-auther -->
-                                            <div class="comment-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                                            </div>
-                                            <!-- .comment-meta -->
-                                            <header class="comment-meta">
-                                                <ul class="post-meta">
-                                                    <li><i class="far fa-clock"></i> 25 Feb, 2021</li>
-                                                    <li><a href="#"><i class="fa fa-reply"></i> reply</a></li>
-                                                </ul>
-                                            </header>
-                                            <!-- .comment-meta -->
-                                        </div>
-
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="comment-form mt-30">
-                                <h2>leave your comments</h2>
-                                <form action="#">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <textarea name="message" placeholder="Please Write Your Message"></textarea>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="text" name="name" placeholder="Your Name">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="email" name="email" placeholder="Your Email">
-                                        </div>
-                                        <div class="col-12">
-                                            <input type="url" name="url" placeholder="Your Website">
-                                        </div>
-                                        <div class="col-12">
-                                            <input type="submit" value="Post Comment">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Sidebar Area -->
-                <div class="col-lg-4">
-                    <div class="blog-sidebar">
-                        <!-- Blog Sidebar Single -->
-                        <div class="blog-sidebar-single mb-35">
-                            <h3>Son Yayımlanan Makaleler</h3>
-                            <div class="widgets-all-posts">
-                                <!-- single -->
-                                <div class="widgets-single-post">
-                                    <div class="widgets-single-post-thumb">
-                                        <a href="single.html"><img src="~/assets/img/blog/1.jpg" alt="blog"></a>
-                                    </div>
-                                    <div class="widgets-single-post-content">
-                                        <h2><a href="single.html">Open Source Job Report Show More Openings Fewer </a></h2>
-                                        <span><i class="far fa-calendar-alt"></i> January 21, 2021 </span>
-                                    </div>
-                                </div>
-                                <!-- single -->
-                                <div class="widgets-single-post">
-                                    <div class="widgets-single-post-thumb">
-                                        <a href="single.html"><img src="~/assets/img/blog/4.jpg" alt="blog"></a>
-                                    </div>
-                                    <div class="widgets-single-post-content">
-                                        <h2><a href="single.html">Open Source Job Report Show More Openings Fewer </a></h2>
-                                        <span><i class="far fa-calendar-alt"></i> January 21, 2021 </span>
-                                    </div>
-                                </div>
-                                <!-- single -->
-                                <div class="widgets-single-post">
-                                    <div class="widgets-single-post-thumb">
-                                        <a href="single.html"><img src="~/assets/img/blog/6.jpg" alt="blog"></a>
-                                    </div>
-                                    <div class="widgets-single-post-content">
-                                        <h2><a href="single.html">Open Source Job Report Show More Openings Fewer </a></h2>
-                                        <span><i class="far fa-calendar-alt"></i> January 21, 2021 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Blog Sidebar Single -->
-                        <div class="blog-sidebar-single mb-35">
-                            <h3>Kategoriler</h3>
-                            <ul>
-                                <li><a href="#">Psikoloji</a></li>
-                                <li><a href="#">Beslenme</a></li>
-                                <li><a href="#">Uyku</a></li>
-                                <li><a href="#">Spor</a></li>
-                                <li><a href="#">Hayat Koçu</a></li>
-                                <li><a href="#">Digital Technology</a></li>
-                            </ul>
-                        </div>
-                        <!-- Blog Sidebar Single -->
-                        <div class="blog-sidebar-single mb-35">
-                            <h3>Etiketler</h3>
-                            <div class="blog-sidebar-tags">
-                                <a href="#">Technology</a>
-                                <a href="#">it</a>
-                                <a href="#">Web</a>
-                                <a href="#">Development</a>
-                                <a href="#">Marketing</a>
-                                <a href="#">Industry</a>
-                                <a href="#">Applications</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</section>

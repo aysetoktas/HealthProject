@@ -1,5 +1,7 @@
-﻿@{
+﻿@using Entity
+@{
     Layout = null;
+    User currentUser = Session["currentUser"] as User;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +33,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item active  ">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="/Uzman/Home/Anasayfa">
                             <i class="material-icons">dashboard</i>
                             <p>Anasayfa</p>
                         </a>
@@ -67,7 +69,7 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-md-start">
-                        <span class="title">Hoşgeldiniz Sn. </span>
+                        <span class="title">Hoşgeldiniz Sn.  @currentUser.FirstName.ToUpper() @currentUser.LastName.ToUpper() </span>
                     </div>
                     <div class="collapse navbar-collapse justify-content-end">
                         <ul class="navbar-nav">
@@ -76,7 +78,7 @@
                                     Çıkış Yap
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="">Çıkış Yap</a>
+                                    <a class="dropdown-item" href="@Url.Action("Logout", "Account", new { area = "" })">Çıkış Yap</a>
                                 </div>
                             </li>
                         </ul>

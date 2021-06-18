@@ -13,6 +13,7 @@ namespace UI.Areas.Uzman.Controllers
         // GET: Uzman/Product
         public ActionResult Listele(int? id)
         {
+            User currentUser = Session["currentUser"] as User;
             List<Product> products = db.Products.ToList();
             return View();
         }

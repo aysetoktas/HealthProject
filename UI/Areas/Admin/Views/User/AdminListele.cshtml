@@ -1,16 +1,17 @@
 ﻿@using Entity
 @{
-    ViewBag.Title = "Listele";
+    ViewBag.Title = "AdminListele";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    List<Category> categories = Query.CategoryList();
+    List<User> users = Query.UserList();
 }
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h3 class="card-title ">KATEGORİLER</h3>
+                        <h3 class="card-title ">ADMİNLER</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -18,21 +19,27 @@
                                 <thead class=" text-primary">
                                     <tr>
                                         <th>Ad</th>
-                                        <th>Açıklama</th>
+                                        <th>Soyad</th>
+                                        <th>E-mail</th>
+                                        <th>Şifre</th>
+                                        <th>Telefon</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in categories)
+                                    @foreach (User user in users.Where(x => x.Role == Role.Admin))
                                     {
                                         <tr>
-                                            <td>@item.Name</td>
-                                            <td>@item.Description</td>
+                                            <td>@user.FirstName</td>
+                                            <td>@user.LastName</td>
+                                            <td>@user.Email</td>
+                                            <td>@user.Password</td>
+                                            <td>@user.PhoneNumber</td>
                                             <td>
-                                                <a href="/Admin/Category/Güncelle/@item.ID">
+                                                <a href="/Admin/User/ZiyaretciGüncelle/@user.ID">
                                                     <button type="button" class="btn btn-info">GÜNCELLE</button>
                                                 </a>
-                                                <a href="/Admin/Category/Sil/@item.ID">
+                                                <a href="/Admin/User/ZiyaretciSil/@user.ID">
                                                     <button type="button" class="btn btn-danger">SİL</button>
                                                 </a>
                                             </td>
@@ -47,3 +54,4 @@
         </div>
     </div>
 </div>
+

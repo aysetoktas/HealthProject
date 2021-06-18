@@ -139,6 +139,7 @@
     <Compile Include="Areas\Uzman\UzmanAreaRegistration.cs" />
     <Compile Include="Areas\Ziyaretci\Controllers\HomeController.cs" />
     <Compile Include="Areas\Ziyaretci\ZiyaretciAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -406,6 +407,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\register\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\register\css\style.css" />
+    <Content Include="Content\register\img\signin-image.jpg" />
+    <Content Include="Content\register\img\signup-image.jpg" />
+    <Content Include="Content\register\vendor\js\jquery.min.js" />
+    <Content Include="Content\register\vendor\js\main.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -625,6 +632,14 @@
     <Content Include="Areas\Admin\Views\User\ZiyaretciGüncelle.cshtml" />
     <Content Include="Areas\Admin\Views\User\UzmanListele.cshtml" />
     <Content Include="Areas\Admin\Views\User\UzmanGüncelle.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ZiyaretciEkle.cshtml" />
+    <Content Include="Areas\Admin\Views\User\UzmanEkle.cshtml" />
+    <Content Include="Areas\Admin\Views\User\AdminEkle.cshtml" />
+    <Content Include="Areas\Admin\Views\User\AdminListele.cshtml" />
+    <Content Include="Areas\Admin\Views\User\AdminGüncelle.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Ekle.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Listele.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Güncelle.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -650,11 +665,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\RegisterUzman.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Article\" />
     <Folder Include="Areas\Uzman\Data\" />
     <Folder Include="Areas\Ziyaretci\Data\" />
     <Folder Include="Models\" />

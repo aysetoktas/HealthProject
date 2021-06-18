@@ -4,6 +4,7 @@
     List<Category> categories = Query.CategoryList();
     List<Product> products = Query.ProductList();
     List<User> users = Query.UserList();
+    User currentUser = Session["currentUser"] as User;
 }
 <!doctype html>
 <html lang="en">
@@ -56,15 +57,15 @@
             <div class="container">
                 <nav class="navbar navbar-expand-md navbar-light">
                     <a class="navbar-brand" href="index.html">
-                        <img src="~/assets/img/logo.png" alt="logo">
+                        @*<img src="~/assets/img/logo.png" alt="logo">*@
+                        Sağlık Rehberi
                     </a>
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a href="/Ziyaretci/Home/Anasayfa" class="nav-link active">Anasayfa</a>
                             </li>
-
-                            @*<li class="nav-item">
+                            <li class="nav-item">
                                 <a href="/Ziyaretci/Home/Makaleler">Makaleler <i class="fas fa-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
                                     @foreach (var item in categories)
@@ -73,7 +74,7 @@
                                     }
                                     <li><a href="/Ziyaretci/Home/Makaleler">Tüm Makaleler</a></li>
                                 </ul>
-                            </li>*@
+                            </li>
                             <li class="nav-item">
                                 <a href="/Ziyaretci/Home/Paketler" class="nav-link">Paketler <i class="fas fa-chevron-down"></i></a>
                                 <ul class="mega-menu dropdown-menu">
@@ -91,7 +92,7 @@
                                     }
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a href="/Ziyaretci/Home/UzmanKisiler" class="nav-link">Uzmanlar <i class="fas fa-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
                                     @foreach (var item in categories)
@@ -100,7 +101,7 @@
                                     }
                                     <li><a href="/Ziyaretci/Home/UzmanKisiler">Tüm Uzmanlar</a></li>
                                 </ul>
-                            </li>
+                            </li>*@
                             <li class="nav-item">
                                 <a href="/Ziyaretci/Home/Hakkimizda" class="nav-link">Hakkımızda</a>
                             </li>
@@ -109,12 +110,39 @@
                             </li>
                         </ul>
                         <div class="others-options">
-                            <div class="option-item">
-                                <a class="default-btn-one" href="quote.html">Üye Ol</a>
-                            </div>
-                            <div class="option-item">
-                                <a class="default-btn-one" href="quote.html">Giriş Yap</a>
-                            </div>
+                            @if (currentUser == null)
+                            {
+                                <div class="option-item">
+                                    <a class="default-btn-one" href="@Url.Action("RegisterUzman", "Account", new { area = "" })">Uzman Üye Ol</a>
+                                </div>
+                                <div class="option-item">
+                                    <a class="default-btn-one" href="@Url.Action("Register", "Account", new { area = "" })">Üye Ol</a>
+                                </div>
+                                <div class="option-item">
+                                    <a class="default-btn-one" href="@Url.Action("Login", "Account", new { area = "" })">Giriş Yap</a>
+                                </div>
+                            }
+                            else if (currentUser.Role == Role.Ziyaretçi)
+                            {
+                                currentUser = null;
+                                <div class="option-item">
+                                    <a class="default-btn-one" href="@Url.Action("Login", "Account", new { area = "" })">Eğitimlerim</a>
+                                </div>
+                                <div class="option-item">
+                                    <a class="default-btn-one" href="@Url.Action("Logout", "Account", new { area = "" })">Çıkış Yap</a>
+                                </div>
+                            }
+                            else
+                            {
+                                currentUser = null;
+                                <div class="option-item">
+                                    <a class="default-btn-one" href="@Url.Action("Anasayfa", "Home", new { area = "Uzman" })">Yönetim Paneli</a>
+                                </div>
+                                <div class="option-item">
+                                    <a class="default-btn-one" href="@Url.Action("Logout", "Account", new { area = "" })">Çıkış Yap</a>
+                                </div>
+                            }
+
                         </div>
                     </div>
                 </nav>

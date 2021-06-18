@@ -16,6 +16,19 @@ namespace UI.Areas.Admin.Controllers
             return View();
         }
         [HttpGet]
+        public ActionResult ZiyaretciEkle()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ZiyaretciEkle(User data)
+        {
+            data.Role = Role.Ziyaretçi;
+            db.Users.Add(data);
+            db.SaveChanges();
+            return RedirectToAction("ZiyaretciListele");
+        }
+        [HttpGet]
         public ActionResult ZiyaretciGüncelle(int? id)
         {
             User guncelUser = db.Users.Find(id);
@@ -31,7 +44,7 @@ namespace UI.Areas.Admin.Controllers
             guncelUser.Password = data.Password;
             guncelUser.PhoneNumber = data.PhoneNumber;
             db.SaveChanges();
-            return RedirectToAction("ZiyaretciListele");
+            return RedirectToAction("AdminListele");
         }
         public ActionResult ZiyaretciSil(int id)
         {
@@ -40,11 +53,21 @@ namespace UI.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("ZiyaretciListele");
         }
-
-
         public ActionResult UzmanListele()
         {
             return View();
+        }
+        [HttpGet]
+        public ActionResult UzmanEkle()
+        {
+            return View();
+        }
+        public ActionResult UzmanEkle(User data)
+        {
+            data.Role = Role.Uzman;
+            db.Users.Add(data);
+            db.SaveChanges();
+            return RedirectToAction("UzmanListele");
         }
         [HttpGet]
         public ActionResult UzmanGüncelle(int? id)
@@ -77,5 +100,50 @@ namespace UI.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("UzmanListele");
         }
+
+        public ActionResult AdminListele()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult AdminEkle()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AdminEkle(User data)
+        {
+            data.Role = Role.Admin;
+            db.Users.Add(data);
+            db.SaveChanges();
+            return RedirectToAction("AdminListele");
+        }
+        [HttpGet]
+        public ActionResult AdminGüncelle(int? id)
+        {
+            User guncelUser = db.Users.Find(id);
+            return View(guncelUser);
+        }
+        [HttpPost]
+        public ActionResult AdminGüncelle(User data)
+        {
+            User guncelUser = db.Users.Find(data.ID);
+            guncelUser.UserName = data.UserName;
+            guncelUser.FirstName = data.FirstName;
+            guncelUser.LastName = data.LastName;
+            guncelUser.Email = data.Email;
+            guncelUser.Password = data.Password;
+            guncelUser.PhoneNumber = data.PhoneNumber;
+            db.SaveChanges();
+            return RedirectToAction("ZiyaretciListele");
+        }
+        public ActionResult AdminSil(int id)
+        {
+            User silUser = db.Users.Find(id);
+            db.Users.Remove(silUser);
+            db.SaveChanges();
+            return RedirectToAction("ZiyaretciListele");
+        }
+
     }
 }

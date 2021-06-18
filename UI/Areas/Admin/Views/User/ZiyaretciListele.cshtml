@@ -27,23 +27,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (User user in users.Where(x=>x.Role==Role.Ziyaretçi))
+                                    @foreach (User user in users.Where(x => x.Role == Role.Ziyaretçi))
                                     {
-                                    <tr>
-                                        <td>@user.FirstName</td>
-                                        <td>@user.LastName</td>
-                                        <td>@user.Email</td>
-                                        <td>@user.Password</td>
-                                        <td>@user.PhoneNumber</td>
-                                        <td>
-                                            <a href="/Admin/User/ZiyaretciGüncelle/@user.ID">
-                                                <i style="margin-left: 12px;" class="material-icons">Güncelle</i>
-                                            </a>
-                                            <a href="/Admin/User/ZiyaretciSil/@user.ID">
-                                                <i class="material-icons">/ Sil</i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>@user.FirstName</td>
+                                            <td>@user.LastName</td>
+                                            <td>@user.Email</td>
+                                            <td>@user.Password</td>
+                                            <td>@user.PhoneNumber</td>
+                                            <td>
+                                                <a href="/Admin/User/ZiyaretciGüncelle/@user.ID">
+                                                    <button type="button" class="btn btn-info">GÜNCELLE</button>
+                                                </a>
+                                                <a href="/Admin/User/ZiyaretciSil/@user.ID">
+                                                    <button type="button" class="btn btn-danger">SİL</button>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
