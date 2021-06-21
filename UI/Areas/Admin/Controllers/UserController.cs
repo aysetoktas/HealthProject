@@ -135,14 +135,14 @@ namespace UI.Areas.Admin.Controllers
             guncelUser.Password = data.Password;
             guncelUser.PhoneNumber = data.PhoneNumber;
             db.SaveChanges();
-            return RedirectToAction("ZiyaretciListele");
+            return RedirectToAction("AdminListele");
         }
         public ActionResult AdminSil(int id)
         {
             User silUser = db.Users.Find(id);
             db.Users.Remove(silUser);
             db.SaveChanges();
-            return RedirectToAction("ZiyaretciListele");
+            return RedirectToAction("AdminListele");
         }
 
     }

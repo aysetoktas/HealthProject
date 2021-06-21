@@ -9,18 +9,18 @@
     int makaleCount = 0;
 }
 <!-- Start Page Title Area -->
-<div class="page-title-area defaultbg" style="background-image:url(/assets/img/page.png);">
+<div class="page-title-area defaultbg" style="background-image:url(/assets/img/footer-bg.jpg);">
     <div class="breadcrumb-overly">
         <div class="d-table">
             <div class="d-table-cell">
                 <div class="container">
                     <div class="page-title-content">
                         <h2>
-                            Blog Details
+                            @Model.Title
                         </h2>
                         <ul>
                             <li><a href="/Ziyaretci/Home/Anasayfa">Anasayfa</a></li>
-                            <li> Blog Details </li>
+                            <li> @Model.Yazar </li>
                         </ul>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                         <div class="col-md-6">
                             <div class="blog-single-tags">
                                 <span>Kaynakça : </span>
-                                <a href="" target="_blank">@Model.Kaynakca</a>
+                                <a href="@Model.Kaynakca" target="_blank">Kaynakça</a>
                             </div>
                         </div>
                     </div>

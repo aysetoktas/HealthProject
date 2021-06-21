@@ -18,6 +18,7 @@
                             <table class="display" style="width:100%" id="categoryTable">
                                 <thead class=" text-primary">
                                     <tr>
+                                        <th>Kullanıcı Adı</th>
                                         <th>Ad</th>
                                         <th>Soyad</th>
                                         <th>E-mail</th>
@@ -29,21 +30,22 @@
                                 <tbody>
                                     @foreach (User user in users.Where(x => x.Role == Role.Admin))
                                     {
-                                        <tr>
-                                            <td>@user.FirstName</td>
-                                            <td>@user.LastName</td>
-                                            <td>@user.Email</td>
-                                            <td>@user.Password</td>
-                                            <td>@user.PhoneNumber</td>
-                                            <td>
-                                                <a href="/Admin/User/ZiyaretciGüncelle/@user.ID">
-                                                    <button type="button" class="btn btn-info">GÜNCELLE</button>
-                                                </a>
-                                                <a href="/Admin/User/ZiyaretciSil/@user.ID">
-                                                    <button type="button" class="btn btn-danger">SİL</button>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>@user.UserName</td>
+                                        <td>@user.FirstName</td>
+                                        <td>@user.LastName</td>
+                                        <td>@user.Email</td>
+                                        <td>@user.Password</td>
+                                        <td>@user.PhoneNumber</td>
+                                        <td>
+                                            <a href="/Admin/User/ZiyaretciGüncelle/@user.ID">
+                                                <button type="button" class="btn btn-info">GÜNCELLE</button>
+                                            </a>
+                                            <a href="/Admin/User/ZiyaretciSil/@user.ID">
+                                                <button type="button" class="btn btn-danger">SİL</button>
+                                            </a>
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

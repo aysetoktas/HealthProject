@@ -6,7 +6,7 @@
     List<Article> articles = Query.ArticleList();
 }
     <!-- Start Page Title Area -->
-    <div class="page-title-area defaultbg" style="background-image:url(/assets/img/page.png);">
+    <div class="page-title-area defaultbg" style="background-image:url(/assets/img/footer-bg.jpg);">
         <div class="breadcrumb-overly">
             <div class="d-table">
                 <div class="d-table-cell">
@@ -40,7 +40,7 @@
                                 <div class="blog-single">
                                     <!-- Blog Thumbnail -->
                                     <div class="blog-thumbnail">
-                                        <a href="single.html"><img src="~/assets/img/blog/1.jpg" alt="Blog"></a>
+                                        <a href="single.html"><img src="~/assets/img/pricing-shape.png" alt="Blog"></a>
                                         <div class="blog-category">
                                             <a href="#">@item.Category.Name</a>
                                         </div>
@@ -56,7 +56,7 @@
                                             </li>
                                         </ul>
                                         <h2><a href="/Ziyaretci/Home/Makale/@item.ID">@item.Title </a></h2>
-                                        <p>@item.Description.Substring(0,5) ...</p>
+                                        <p>@item.Description.Substring(0,100) ...</p>
                                         <div class="blog-btn">
                                             <a href="/Ziyaretci/Home/Makale/@item.ID" class="blog-btn-one">Devamını Oku <i class="fas fa-long-arrow-alt-right"></i></a>
                                         </div>
