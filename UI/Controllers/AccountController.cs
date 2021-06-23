@@ -77,7 +77,7 @@ namespace UI.Controllers
             newUser.Role = Role.Ziyaretçi;
             db.Users.Add(newUser);
             db.SaveChanges();
-            return RedirectToAction("Register", "Account");
+            return RedirectToAction("Login", "Account");
         }
         [HttpGet]
         public ActionResult RegisterUzman()
