@@ -4,7 +4,7 @@
     Layout = "~/Areas/Uzman/Views/Shared/_UzmanLayout.cshtml";
     List<Product> products = Query.ProductList();
     List<User> users = Query.UserList();
-    User currentUser = Session["cuurentUser"] as User;
+    User currentUser = Session["currentUser"] as User;
 }
 <div class="content">
     <div class="container-fluid">
@@ -35,8 +35,8 @@
                                 <tbody>
                                     @foreach (var item in products)
                                     {
-                                        //if (item.UserID == currentUser.ID)
-                                        //{
+                                        if (item.UserID == currentUser.ID)
+                                        {
                                             <tr>
                                                 <td>@item.Name</td>
                                                 <td>@item.Price</td>
@@ -57,7 +57,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        @*}*@
+                                        }
                                     }
                                 </tbody>
                             </table>

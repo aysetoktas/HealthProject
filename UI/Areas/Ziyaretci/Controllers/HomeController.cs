@@ -28,14 +28,23 @@ namespace UI.Areas.Ziyaretci.Controllers
         {
             return View();
         }
-        public ActionResult Makaleler()
+        public ActionResult Makaleler(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return RedirectToAction("TümMakaleler");
+            }
+            List<Article> Bul(int id) => db.Articles.Where(x => x.CategoryID == id).ToList();
+            return View(Bul((int)id));
         }
         public ActionResult Makale(int? id)
         {
             Article article = db.Articles.Find(id);
             return View(article);
+        }
+        public ActionResult TümMakaleler()
+        {
+            return View();
         }
 
         public ActionResult Paketler(int? id)
@@ -44,7 +53,6 @@ namespace UI.Areas.Ziyaretci.Controllers
             {
                 return RedirectToAction("TümPaketler");
             }
-            //Product product = db.Products.Find(id);
             List<Product> Bul(int id) => db.Products.Where(x => x.CategoryID == id).ToList();
             return View(Bul((int)id));
 

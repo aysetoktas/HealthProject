@@ -640,6 +640,7 @@
     <Content Include="Areas\Admin\Views\Article\Ekle.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Listele.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Güncelle.cshtml" />
+    <Content Include="Areas\Ziyaretci\Views\Home\TümMakaleler.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

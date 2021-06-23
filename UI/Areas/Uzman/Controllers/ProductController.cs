@@ -26,6 +26,7 @@ namespace UI.Areas.Uzman.Controllers
         [HttpPost]
         public ActionResult Ekle(Product data)
         {
+            User currentUser = Session["currentUser"] as User;
             Product yeni = new Product();
             yeni.Name = data.Name;
             yeni.Price = data.Price;
@@ -36,7 +37,7 @@ namespace UI.Areas.Uzman.Controllers
             yeni.Item4 = data.Item4;
             yeni.Item5 = data.Item5;
             yeni.CategoryID = data.CategoryID;
-            yeni.UserID = data.UserID;
+            yeni.UserID = currentUser.ID;
             db.Products.Add(yeni);
             db.SaveChanges();
             return RedirectToAction("Listele");
@@ -60,7 +61,7 @@ namespace UI.Areas.Uzman.Controllers
             guncelProduct.Item4 = data.Item4;
             guncelProduct.Item5 = data.Item5;
             guncelProduct.CategoryID = data.CategoryID;
-            guncelProduct.UserID = data.UserID;
+            //guncelProduct.UserID = data.UserID;
             db.SaveChanges();
             return RedirectToAction("Listele");
         }

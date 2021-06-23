@@ -32,7 +32,7 @@
                                 <input name="Price" value="@Model.Price" class="form-control" />
                             </div>
                             <div class="form-group">
-                                <label for="Time">Kullanım Süresi (0 - 1 - 2)</label>
+                                <label for="Time">Kullanım Süresi (0 - Tek / 1 - Aylık / 2 - Yıllık)</label>
                                 <input name="Time" value="@Model.Time" class="form-control" />
                             </div>
                             <div class="form-group">
@@ -52,6 +52,10 @@
                                 <input name="Item4" value="@Model.Item4" class="form-control" />
                             </div>
                             <div class="form-group">
+                                <label for="Item5">Özellik 5</label>
+                                <input name="Item5" value="@Model.Item5" class="form-control" />
+                            </div>
+                            <div class="form-group">
                                 <label for="CategoryID">Kategori Seçiniz :</label>
                                 <select name="CategoryID" class="form-control">
                                     @foreach (var item in categories)
@@ -60,15 +64,15 @@
                                     }
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="UserID">Kişi Seçiniz</label>
-                                <select name="CategoryID" class="form-control">
-                                    @foreach (var item in users)
-                                    {
-                                        <option @(Model.UserID == item.ID ? "selected=\"selected\"" : "" ) value="@item.ID">@item.Role - @item.FirstName @item.LastName</option>
-                                    }
-                                </select>
-                            </div>
+                            @*<div class="form-group">
+            <label for="UserID">Kişi Seçiniz</label>
+            <select name="CategoryID" class="form-control">
+                @foreach (var item in users)
+                {
+                    <option @(Model.UserID == item.ID ? "selected=\"selected\"" : "" ) value="@item.ID">@item.Role - @item.FirstName @item.LastName</option>
+                }
+            </select>
+        </div>*@
 
                             <input type="submit" value="Güncelle" class="form-control btn btn-primary" />
                         </form>
